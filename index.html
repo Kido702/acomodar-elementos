@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo Acomodar Elementos con CSS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            padding: 40px 20px 80px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #64748b;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 26px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+            font-size: 19px;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .card p.desc {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .demo-area {
+            background-color: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* ========================================================
+           1. CENTRADO CON MARGIN: AUTO
+           ======================================================== */
+        .caja-centrada {
+            width: 250px;
+            background-color: #3b82f6;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            /* El truco del centrado clásico: */
+            margin: 0 auto;
+        }
+
+        /* ========================================================
+           2. POSICIONAMIENTO RELATIVE Y ABSOLUTE
+           ======================================================== */
+        .contenedor-padre-relativo {
+            position: relative;
+            height: 180px;
+            background-color: #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .hijo-absoluto-top-left {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #ef4444;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hijo-absoluto-bottom-right {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: #10b981;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hijo-absoluto-centro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #8b5cf6;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ========================================================
+           3. ACOMODAR EN REJILLA (CSS GRID)
+           ======================================================== */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-item {
+            background-color: #0ea5e9;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .grid-item.ancho-doble {
+            grid-column: span 2;
+            background-color: #6366f1;
+        }
+
+        /* ========================================================
+           4. BOTÓN FIJO (POSITION FIXED)
+           ======================================================== */
+        .boton-fijo {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #2563eb;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .boton-fijo:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* ========================================================
+           5. ENCABEZADO PEGAJOSO (POSITION STICKY)
+           ======================================================== */
+        .caja-scroll {
+            height: 160px;
+            overflow-y: auto;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            background-color: #f59e0b;
+            color: #000;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-bottom: 2px solid #d97706;
+        }
+
+        .contenido-scroll {
+            padding: 15px;
+            color: #64748b;
+        }
+
+        code {
+            background-color: #f1f5f9;
+            color: #2563eb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: monospace;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Técnicas para Acomodar Elementos en CSS</h1>
+            <p>Aprende las 5 formas más importantes de posicionar y distribuir cajas en la pantalla</p>
+        </header>
+
+        <!-- 1. Margen automático -->
+        <div class="card">
+            <h2>1. Centrar un bloque con <code>margin: 0 auto;</code></h2>
+            <p class="desc">La forma más sencilla y clásica de centrar una caja fija horizontalmente dentro de su contenedor.</p>
+            <div class="demo-area">
+                <div class="caja-centrada">
+                    Caja centrada (250px)
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Position Relative + Absolute -->
+        <div class="card">
+            <h2>2. Posicionamiento Libre: <code>position: relative</code> y <code>absolute</code></h2>
+            <p class="desc">El contenedor padre tiene <code>position: relative</code>, lo que permite que los elementos hijos se ubiquen exactamente donde quieras con <code>top</code>, <code>bottom</code>, <code>left</code> o <code>right</code>.</p>
+            <div class="demo-area">
+                <div class="contenedor-padre-relativo">
+                    <div class="hijo-absoluto-top-left">Arriba a la Izquierda</div>
+                    <div class="hijo-absoluto-centro">Centro Exacto</div>
+                    <div class="hijo-absoluto-bottom-right">Abajo a la Derecha</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. CSS Grid -->
+        <div class="card">
+            <h2>3. Acomodar en Rejilla con <code>CSS Grid</code></h2>
+            <p class="desc">Organiza elementos en filas y columnas perfectas con <code>display: grid</code> y <code>grid-template-columns</code>.</p>
+            <div class="demo-area">
+                <div class="grid-layout">
+                    <div class="grid-item">Columna 1</div>
+                    <div class="grid-item">Columna 2</div>
+                    <div class="grid-item">Columna 3</div>
+                    <div class="grid-item ancho-doble">Ocupa 2 Columnas (span 2)</div>
+                    <div class="grid-item">Columna 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Position Sticky -->
+        <div class="card">
+            <h2>4. Elemento Pegajoso: <code>position: sticky</code></h2>
+            <p class="desc">Haz scroll dentro de esta caja para ver cómo el encabezado amarillo se queda pegado en la parte superior.</p>
+            <div class="demo-area">
+                <div class="caja-scroll">
+                    <div class="header-sticky">📌 Encabezado fijo al hacer scroll</div>
+                    <div class="contenido-scroll">
+                        <p>Línea 1: Desplaza hacia abajo...</p>
+                        <p>Línea 2: El encabezado amarillo no desaparece.</p>
+                        <p>Línea 3: Se mantiene pegado arriba con <code>top: 0</code>.</p>
+                        <p>Línea 4: Muy útil para barras de navegación o tablas largas.</p>
+                        <p>Línea 5: Final del contenido.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Position Fixed (Demostración visible en la esquina) -->
+        <div class="card">
+            <h2>5. Elemento Fijo en Pantalla: <code>position: fixed</code></h2>
+            <p class="desc">Fíjate en la esquina inferior derecha de tu pantalla: hay un botón azul flotante que permanece visible en todo momento aunque te desplaces por la página.</p>
+        </div>
+    </div>
+
+    <!-- Botón flotante fixed -->
+    <button class="boton-fijo">
+        💬 Botón Fijo (Fixed)
+    </button>
+
+</body>
+</html>
